@@ -41,9 +41,15 @@ const Navigation = (props) => {
                     <Nav navbar>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
-                                <FontAwesomeIcon icon={faUser} /> Azmi Muhammad
+                                <FontAwesomeIcon icon={faUser} /> Account
                             </DropdownToggle>
                             <DropdownMenu right>
+                                <DropdownItem>
+                                    Sign In
+                                </DropdownItem>
+                                <DropdownItem>
+                                    Sign Out
+                                </DropdownItem>
                                 <DropdownItem>
                                     Logout
                                 </DropdownItem>
