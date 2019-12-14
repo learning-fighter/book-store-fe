@@ -45,7 +45,7 @@ export default class Books extends Component {
                     )}
                     <Row>
                         {data && data.map((book, key) => (
-                            <Col md="4">
+                            <Col md="3">
                                 <Card>
                                     <CardImg top className="booksCover" src="https://ssvr.bukukita.com/babacms/displaybuku/113314_f.jpg" alt="Card image cap" />
                                     <CardBody>
