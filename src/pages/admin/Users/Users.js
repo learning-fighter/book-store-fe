@@ -2,13 +2,23 @@ import React, { Component } from "react";
 import { Container, Row, Col, Table, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons'
+import axios from "axios"
 import { Link } from 'react-router-dom'
 
 export default class Users extends Component {
+    state = {data:null}
+    async componentWillMount() {
+        const request = await axios.get('http://localhost:8000/users')
+        this.setState({data:request.data})
+    }
     render() {
+        const {data} = this.state                
         return (
             <div>
                 <Container>
+                    {!data && (
+                        <h2>Loading ...</h2>
+                    )}
                     <Row>
                         <Col>
                             <h1 className="page-title">Users List</h1>
@@ -17,24 +27,22 @@ export default class Users extends Component {
                             <Table hover>
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Full Name</th>
-                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {data && data.map((users, key) => (
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Novel</td>
-                                        <td>Novel</td>
-                                        <td>Novel</td>
+                                        <td>{users.name}</td>
+                                        <td>{users.email}</td>
                                         <td>
                                             <Link to=""><FontAwesomeIcon icon={faEdit} className="margin-right" /></Link>
                                             <Link to=""><FontAwesomeIcon icon={faTrashAlt} /></Link>
                                         </td>
                                     </tr>
+                                ))}
                                 </tbody>
                             </Table>
                         </Col>
