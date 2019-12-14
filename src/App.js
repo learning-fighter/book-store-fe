@@ -30,7 +30,7 @@ function App() {
           {/* USER PAGES */}
           <Route path="/books" component={Books} />
           <Route path="/cart" component={Cart} />
-          <Route path="/detail" component={BookDetail} />
+          <Route path="/detail/:id" component={BookDetail} />
 
           {/* ADMIN PAGES */}
           <Route path="/categories" component={Categories} />

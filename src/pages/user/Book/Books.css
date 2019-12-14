@@ -23,3 +23,34 @@
 .books-search{
     margin-top: 30px;
 }
+
+.card-title {
+    font-size: 12px;
+}
+
+.card-body {
+    height: 230px;
+}
+
+.main-card {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.main-card a {
+    font-size: 12px;
+}
+
+.main-card a:hover {
+    text-decoration: none;
+}
+
+.main-card span {
+   position: absolute;
+   bottom: 0;
+   margin-bottom: 10px;
+}
+
+.action-card {
+    margin-left: 3px;
+}
