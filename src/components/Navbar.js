@@ -44,15 +44,21 @@ const Navigation = (props) => {
                                 <FontAwesomeIcon icon={faUser} /> Account
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>
-                                    Sign In
-                                </DropdownItem>
-                                <DropdownItem>
-                                    Sign Out
-                                </DropdownItem>
-                                <DropdownItem>
-                                    Logout
-                                </DropdownItem>
+                                <Link to="/login">
+                                    <DropdownItem>
+                                        Sign In
+                                    </DropdownItem>
+                                </Link>
+                                <Link to="/register">
+                                    <DropdownItem>
+                                        Sign Up
+                                    </DropdownItem>
+                                </Link>
+                                <Link to="">
+                                    <DropdownItem>
+                                        Logout
+                                    </DropdownItem>
+                                </Link>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
