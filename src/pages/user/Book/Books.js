@@ -7,17 +7,30 @@ import axios from "axios"
 import './Books.css'
 
 export default class Books extends Component {
-    state = {data:null}
+    state = {
+        data: null,
+        search: '',
+        category: ''
+    }
     async componentWillMount() {
         const requestBooks = await axios.get('http://localhost:8000/book')
         const requestCategories = await axios.get('http://localhost:8000/category')
         this.setState({data:requestBooks.data})
         this.setState({categoriesData:requestCategories.data})
     }
+
+    onSearch = (e) => {
+        this.setState({search: e.target.value})
+    }
+
     render() {
-        const {data} = this.state
-        const {categoriesData} = this.state
-        console.log(categoriesData);
+        const { data, search, categoriesData } = this.state
+        let filteredData = []
+        if (data) {
+            filteredData = data.filter((book) => {
+                return book.title.toLowerCase().includes(search.toLowerCase())
+            })
+        }
         
         return (
             <div className="content">
@@ -34,7 +47,7 @@ export default class Books extends Component {
                         <Col md="9">
                             <div class="d-flex justify-content-center">
                                 <InputGroup>
-                                    <Input placeholder="Find the title of the book you want" />
+                                    <Input placeholder="Find the title of the book you want" value={search} onChange={this.onSearch}/>
                                     <InputGroupAddon addonType="append">
                                         <Button color="primary"><FontAwesomeIcon icon={faSearch} /></Button>
                                     </InputGroupAddon>
@@ -45,11 +58,11 @@ export default class Books extends Component {
                 </Container>
                 <Container className="books-content">
                     <h2>Book Collection</h2>
-                    {!data && (
+                    {!filteredData && (
                         <h2>Loading ...</h2>
                     )}
                     <Row>
-                        {data && data.map((book, key) => (
+                        {filteredData && filteredData.map((book, key) => (
                             <Col md="2">
                                 <Card className="main-card">
                                     <CardImg top className="booksCover" src="https://ssvr.bukukita.com/babacms/displaybuku/113314_f.jpg" alt="Card image cap" />

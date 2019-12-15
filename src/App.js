@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import './App.css';
 import Login from './pages/login/Login'
 import Register from './pages/login/Register'
@@ -16,10 +16,18 @@ import AddBook from './pages/admin/Books/AddBook'
 import Users from './pages/admin/Users/Users'
 import AddUser from './pages/admin/Users/AddUser'
 
-function App() {
+  function getUser() {
+    return localStorage.getItem('userData')
+      ? JSON.parse(localStorage.getItem('userData'))
+      : null
+  }
+
+  function App(props) {
+    const userData = getUser()
+
   return (
     <div className="App">
-        <Navigation />
+        <Navigation userData={userData}/>
         <Switch>
           <Route path="/" exact component={Home}></Route>
           
@@ -45,4 +53,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

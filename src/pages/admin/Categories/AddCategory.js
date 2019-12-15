@@ -3,33 +3,6 @@ import { Container, Row, Col, Form, Button, FormGroup, Label, Input } from 'reac
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
-// export default class AddCategory extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <Container>
-//                     <Row>
-//                         <Col md="7">
-//                             <h1 className="page-title">Add Category</h1>
-//                             <Form>
-//                                 <FormGroup>
-//                                     <Label>Category Name</Label>
-//                                     <Input required 
-//                                         type="text"
-//                                         placeholder="Category"
-//                                         value=""
-//                                     />
-//                                 </FormGroup>
-//                                 <Button>Submit</Button>
-//                             </Form>
-//                         </Col>
-//                     </Row>
-//                 </Container>
-//             </div>
-//         );
-//     }
-// }
-
 const AddCategory = props => {
     const [category, setCategory] = useState('')
     const handleSubmit = async (e) => {
@@ -37,7 +10,6 @@ const AddCategory = props => {
         const request = await axios.post('http://localhost:8000/category', {
             categoryName: category 
         })
-        console.log(request)
         props.history.push('/categories')
     }
 

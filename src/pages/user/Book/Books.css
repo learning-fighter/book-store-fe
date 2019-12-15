@@ -54,3 +54,12 @@
 .action-card {
     margin-left: 3px;
 }
+
+.button-cart {
+    margin-left: 5px;
+}
+
+.font-price {
+    color: red;
+    font-weight: bold;
+}

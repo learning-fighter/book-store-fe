@@ -12,7 +12,7 @@ export default class Footer extends Component {
                 <Row>
                     <Col className="sub-footer">
                         <h4 className="title-footer">ABOUT US</h4>
-                        <Link to="/"><img src={require('./LearningFighter.PNG')} className="img-footer" /></Link>
+                        <Link to="/"><img src={require('./img/LearningFighter.PNG')} className="img-footer" /></Link>
                         <div className="footer-content">
                             <table>
                                 <tr>
@@ -58,24 +58,24 @@ export default class Footer extends Component {
                         <div className="footer-content">
                             <Row>
                                 <Col>
-                                    <img src={require('./logo-mandiri.png')} className="img-payment" />
+                                    <img src={require('./img/logo-mandiri.png')} className="img-payment" />
                                 </Col>
                                 <Col>
-                                    <img src={require('./logo-bca.PNG')} className="img-payment" />
+                                    <img src={require('./img/logo-bca.PNG')} className="img-payment" />
                                 </Col>
                                 <Col>
-                                    <img src={require('./logo-bri.PNG')} className="img-payment" />
+                                    <img src={require('./img/logo-bri.PNG')} className="img-payment" />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <img src={require('./logo-bni.PNG')} className="img-payment" />
+                                    <img src={require('./img/logo-bni.PNG')} className="img-payment" />
                                 </Col>
                                 <Col>
-                                    <img src={require('./logo-alfamart.png')} className="img-payment" />
+                                    <img src={require('./img/logo-alfamart.png')} className="img-payment" />
                                 </Col>
                                 <Col>
-                                    <img src={require('./logo-indomart.PNG')} className="img-payment" />
+                                    <img src={require('./img/logo-indomart.PNG')} className="img-payment" />
                                 </Col>
                             </Row>
                         </div>
@@ -84,16 +84,16 @@ export default class Footer extends Component {
                         <h4 className="title-footer">SHIPPING METHOD</h4>
                         <div className="footer-content">
                             <Row>
-                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./logo-jne.png')} className="img-payment" /></Col>
+                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./img/logo-jne.png')} className="img-payment" /></Col>
                             </Row>
                             <Row>
-                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./logo-jnt.PNG')} className="img-payment" /></Col>
+                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./img/logo-jnt.PNG')} className="img-payment" /></Col>
                             </Row>
                             <Row>
-                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./logo-pos.png')} className="img-payment" /></Col>
+                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./img/logo-pos.png')} className="img-payment" /></Col>
                             </Row>
                             <Row>
-                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./logo-tiki.PNG')} className="img-payment" /></Col>
+                                <Col sm="12" md={{ size: 4, offset: 4 }}><img src={require('./img/logo-tiki.PNG')} className="img-payment" /></Col>
                             </Row>
                         </div>
                     </Col>

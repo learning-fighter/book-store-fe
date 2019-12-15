@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom'
 import {
     Collapse,
     Navbar,
@@ -15,16 +15,28 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faBook, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
 import './Navbar.css'
+import axios from 'axios'
 
 const Navigation = (props) => {
+    console.log(props)
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
+    const handleLogout = async (token) => {
+        await axios.post('http://localhost:8000/users/logout', {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        localStorage.removeItem('userData')
+        props.history.push('/login')
+    }
+
     return (
         <div>
             <Navbar color="info" light expand="md">
-                <Link to="/"><NavbarBrand><img src={require('./LearningFighter.PNG')} className="img-navbar" /></NavbarBrand></Link>
+                <Link to="/"><NavbarBrand><img src={require('./img/LearningFighter.PNG')} className="img-navbar" /></NavbarBrand></Link>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
@@ -41,24 +53,27 @@ const Navigation = (props) => {
                     <Nav navbar>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
-                                <FontAwesomeIcon icon={faUser} /> Account
+                                <FontAwesomeIcon icon={faUser} /> {props.userData ? props.userData.user.name : '-'}
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <Link to="/login">
-                                    <DropdownItem>
-                                        Sign In
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="/register">
-                                    <DropdownItem>
-                                        Sign Up
-                                    </DropdownItem>
-                                </Link>
-                                <Link to="">
-                                    <DropdownItem>
+                                {!props.userData ? (
+                                    <>
+                                    <Link to="/login">
+                                        <DropdownItem>
+                                            Sign In
+                                        </DropdownItem>
+                                    </Link>
+                                    <Link to="/register">
+                                        <DropdownItem>
+                                            Sign Up
+                                        </DropdownItem>
+                                    </Link>
+                                    </>
+                                ) : (
+                                    <DropdownItem onClick={() => handleLogout(props.userData.token)}>
                                         Logout
                                     </DropdownItem>
-                                </Link>
+                                )}
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </Nav>
@@ -68,4 +83,4 @@ const Navigation = (props) => {
     );
 }
 
-export default Navigation;
+export default withRouter(Navigation);
