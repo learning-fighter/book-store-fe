@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, Button, InputGroup, InputGroupAddon, Input  } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faCartPlus, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import './Books.css'
@@ -71,21 +72,21 @@ export default class Books extends Component {
                                     <CardImg top className="booksCover" src="https://ssvr.bukukita.com/babacms/displaybuku/113314_f.jpg" alt="Card image cap" />
                                     <CardBody className="card-body">
                                         <CardTitle className="card-title"><b>{book.title}</b></CardTitle>
-                                        <CardTitle className="font-price">Rp. {book.price}</CardTitle>
+                                        <CardTitle className="card-title"><NumberFormat className="font-price" value={book.price} displayType={'text'} thousandSeparator={true} prefix={'Rp.'} /><br /></CardTitle>
                                         <CardSubtitle className="card-subtitle">
                                             Author : {book.author} <br />
                                             Stock : {book.stock}
                                         </CardSubtitle><br />
-                                        <span>
-                                            <Link to={`/detail/${book._id}`} ><FontAwesomeIcon icon={faInfoCircle} /> Detail</Link>  
-                                            {!userData ? (
-                                                <>
+                                            <font>
+                                                <Link to={`/detail/${book._id}`} ><FontAwesomeIcon icon={faInfoCircle} /> Detail</Link>
+                                                {!userData ? (
+                                                    <>
 
-                                                </>
-                                            ) : (
-                                                <Link to="" className="action-card"><FontAwesomeIcon icon={faCartPlus} /> Add</Link>
-                                            )}
-                                        </span>
+                                                    </>
+                                                ) : (
+                                                        <Link to="" className="action-card"><FontAwesomeIcon icon={faCartPlus} /> Add</Link>
+                                                    )}
+                                            </font>
                                     </CardBody>
                                 </Card>
                             </Col>

@@ -45,7 +45,7 @@
     text-decoration: none;
 }
 
-.main-card span {
+.main-card font {
    position: absolute;
    bottom: 0;
    margin-bottom: 10px;

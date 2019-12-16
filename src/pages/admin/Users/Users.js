@@ -11,11 +11,11 @@ export default class Users extends Component {
         const request = await axios.get('http://localhost:8000/users')
         this.setState({data:request.data})
     }
-
+    
     handleDelete = async (id) => {
         await axios.delete(`http://localhost:8000/users/${id}`)
-        // const request = await axios.get('http://localhost:8000/users')
-        this.setState({ data: [] })
+        const request = await axios.get('http://localhost:8000/users')
+        this.setState({data:request.data})
     }
 
     render() {
