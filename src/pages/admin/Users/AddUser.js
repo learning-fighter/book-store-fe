@@ -8,6 +8,7 @@ const AddUser = props => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async (e) => {
+        e.preventDefault()
         const request = await axios.post('http://localhost:8000/users', {
             name : name,
             email : email,

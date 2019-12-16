@@ -1,19 +1,3 @@
-// import React, { Component } from "react";
-// import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, Button, InputGroup, InputGroupAddon, Input } from 'reactstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faSearch, faCartPlus } from '@fortawesome/free-solid-svg-icons'
-// 
-
-// export default class Home extends Component {
-//     render() {
-//         return (
-//             <div className="content">
-                
-//             </div>
-//         );
-//     }
-// }
-
 import React, { useState } from 'react';
 import {
     Carousel,

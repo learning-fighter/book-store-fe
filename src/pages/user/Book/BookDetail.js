@@ -15,7 +15,9 @@ class BookDetail extends Component {
     }
     render() {
         const { data } = this.state
-        console.log(data)
+        const userData = localStorage.getItem('userData')
+            ? JSON.parse(localStorage.getItem('userData'))
+            : null
         return (
             <div className="content">
                 <Container className="cart-content">
@@ -52,7 +54,7 @@ class BookDetail extends Component {
                                             <td>{data.pages}</td>
                                         </tr>
                                         <tr>
-                                            <th>Synopsis</th>
+                                            <th>Description</th>
                                             <td className="detail-synopsis">{data.synopsis}</td>
                                         </tr>
                                         <tr>
@@ -60,7 +62,13 @@ class BookDetail extends Component {
                                             <td>{data.stock}</td>
                                         </tr>
                                     </table><br/>
-                                    <Button color="success" size="sm"><FontAwesomeIcon icon={faCartPlus} /> Add to Cart</Button>
+                                    {!userData ? (
+                                        <>
+
+                                        </>
+                                    ) : (
+                                            <Button color="success" size="sm"><FontAwesomeIcon icon={faCartPlus} /> Add to Cart</Button>
+                                        )}
                                 </Col>
                             </Row>
                         )}

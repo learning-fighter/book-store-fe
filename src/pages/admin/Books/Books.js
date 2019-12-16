@@ -8,12 +8,20 @@ import "./Books.css"
 
 export default class BookList extends Component {
     state = {data:null}
-    async componentWillMount() {
+    async componentDidMount() {
         const request = await axios.get('http://localhost:8000/book')
         this.setState({data:request.data})
     }
+    
+    handleDelete = async (id) => {
+        await axios.delete(`http://localhost:8000/book/${id}`)
+        const request = await axios.get('http://localhost:8000/book')
+        this.setState({data:request.data})
+    }
+
     render() {
-        const {data} = this.state  
+        const {data} = this.state 
+        console.log(data) 
         return (
             <div>
                 <Container>
@@ -41,9 +49,9 @@ export default class BookList extends Component {
                                         <td>{book.title} </td>
                                         <td>{book.author} </td>
                                         <td>
-                                            <Link to=""><FontAwesomeIcon icon={faInfoCircle} className="margin-right" /></Link>
-                                            <Link to=""><FontAwesomeIcon icon={faEdit} className="margin-right" /></Link>
-                                            <Link to=""><FontAwesomeIcon icon={faTrashAlt} /></Link>
+                                            <Link to={`/detail/${book._id}`}><FontAwesomeIcon icon={faInfoCircle} className="margin-right" /></Link>
+                                            {/* <Link to=""><FontAwesomeIcon icon={faEdit} className="margin-right" /></Link> */}
+                                            <FontAwesomeIcon onClick={() => this.handleDelete(book._id)} icon={faTrashAlt} />
                                         </td>
                                     </tr>
                                 ))}

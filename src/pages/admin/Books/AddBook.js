@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
@@ -10,6 +10,19 @@ const AddBooks = props => {
     const [pages, setPages] = useState('')
     const [stock, setStcok] = useState('')
     const [synopsis, setSynopsis] = useState('')
+    const [categories, setCategories] = useState('')
+    const [category, setCategory] = useState('')
+
+    async function fetchData() {
+        const request = await axios.get('http://localhost:8000/category')
+        const data = request.data
+        setCategories(data)
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         const request = await axios.post('http://localhost:8000/book', {
@@ -18,9 +31,10 @@ const AddBooks = props => {
             price: price,
             pages: pages,
             stock: stock,
-            synopsis: synopsis
+            synopsis: synopsis,
+            category: category
         })
-        console.log(request)
+        // console.log(request)
         props.history.push('/bookList')
     }
         return (
@@ -41,8 +55,10 @@ const AddBooks = props => {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="exampleSelect">Category</Label>
-                                    <Input type="select" name="select" id="exampleSelect">
-                                   
+                                    <Input type="select" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                        {categories && categories.map((categories, key) => (
+                                            <option value={categories._id}>{categories.categoryName}</option>
+                                        ))}
                                     </Input>
                                 </FormGroup>
                                 <FormGroup>
@@ -55,7 +71,7 @@ const AddBooks = props => {
                                     />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="exampleText">Synopsis</Label>
+                                    <Label for="exampleText">Description</Label>
                                     <Input type="textarea" name="text" id="exampleText" required 
                                         value={synopsis}
                                         onChange={(e) => setSynopsis(e.target.value)}

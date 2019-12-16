@@ -45,7 +45,7 @@ import AddUser from './pages/admin/Users/AddUser'
           <Route path="/addCategory" component={AddCategory} />
           <Route path="/bookList" component={BookList} />
           <Route path="/addBook" component={AddBook} />
-          <Route path="/users" component={Users} />
+          <Route path="/users" exact component={Users} />
           <Route path="/addUser" component={AddUser} />
         </Switch>
         <Footer />

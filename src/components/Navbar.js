@@ -18,7 +18,6 @@ import './Navbar.css'
 import axios from 'axios'
 
 const Navigation = (props) => {
-    console.log(props)
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -35,7 +34,7 @@ const Navigation = (props) => {
 
     return (
         <div>
-            <Navbar color="info" light expand="md">
+            <Navbar className="main-navbar" light expand="md">
                 <Link to="/"><NavbarBrand><img src={require('./img/LearningFighter.PNG')} className="img-navbar" /></NavbarBrand></Link>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
@@ -46,14 +45,20 @@ const Navigation = (props) => {
                         <NavItem>
                             <NavLink to="/books" className="navbar-custom"><FontAwesomeIcon icon={faBook} /> Books</NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink to="/cart" className="navbar-custom"><FontAwesomeIcon icon={faShoppingCart} /> Cart</NavLink>
-                        </NavItem>
+                        {!props.userData ? (
+                            <>
+                                
+                            </>
+                        ) : (
+                            <NavItem>
+                                <NavLink to="/cart" className="navbar-custom"><FontAwesomeIcon icon={faShoppingCart} /> Cart</NavLink>
+                            </NavItem>
+                        )}
                     </Nav>
                     <Nav navbar>
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
-                                <FontAwesomeIcon icon={faUser} /> {props.userData ? props.userData.user.name : '-'}
+                                <FontAwesomeIcon icon={faUser} /> {props.userData ? props.userData.user.name : 'Account'}
                             </DropdownToggle>
                             <DropdownMenu right>
                                 {!props.userData ? (

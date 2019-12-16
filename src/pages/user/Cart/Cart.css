@@ -6,3 +6,30 @@
     width: 100px;
     height: 120px;
 }
+
+.cart-item {
+    margin-bottom: 30px;
+}
+
+.btn-remove span {
+    line-height: 120px;
+}
+
+.font-title-cart {
+    color: #44749d;
+    font-weight: bold;
+}
+
+.font-price-cart {
+    font-size: 25px;
+    font-weight: bold;
+    color: #fa6900;
+}
+
+.bg-price {
+    background-color: #c6d4e1;
+}
+
+.btn-delete-cart {
+    color: red;
+}

@@ -7,10 +7,17 @@ import { Link } from 'react-router-dom'
 
 export default class Users extends Component {
     state = {data:null}
-    async componentWillMount() {
+    async componentDidMount() {
         const request = await axios.get('http://localhost:8000/users')
         this.setState({data:request.data})
     }
+
+    handleDelete = async (id) => {
+        await axios.delete(`http://localhost:8000/users/${id}`)
+        // const request = await axios.get('http://localhost:8000/users')
+        this.setState({ data: [] })
+    }
+
     render() {
         const {data} = this.state                
         return (
@@ -39,7 +46,7 @@ export default class Users extends Component {
                                         <td>{users.email}</td>
                                         <td>
                                             <Link to=""><FontAwesomeIcon icon={faEdit} className="margin-right" /></Link>
-                                            <Link to=""><FontAwesomeIcon icon={faTrashAlt} /></Link>
+                                            <FontAwesomeIcon onClick={() => this.handleDelete(users._id)} icon={faTrashAlt} />
                                         </td>
                                     </tr>
                                 ))}

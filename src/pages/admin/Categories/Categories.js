@@ -12,6 +12,13 @@ export default class Categories extends Component {
         const request = await axios.get('http://localhost:8000/category')
         this.setState({data:request.data})
     }
+
+    handleDelete = async (id) => {
+        await axios.delete(`http://localhost:8000/category/${id}`)
+        const request = await axios.get('http://localhost:8000/category')
+        this.setState({ data: request.data })
+    }
+
     render() {
         const {data} = this.state        
         return (            
@@ -38,7 +45,7 @@ export default class Categories extends Component {
                                         <td>{category.categoryName} </td>
                                         <td>
                                             <Link to=""><FontAwesomeIcon icon={faEdit} className="margin-right" /></Link>
-                                            <Link to=""><FontAwesomeIcon icon={faTrashAlt} /></Link>
+                                            <FontAwesomeIcon onClick={() => this.handleDelete(category._id)} icon={faTrashAlt} />
                                         </td>
                                     </tr>
                                 ))}

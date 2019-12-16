@@ -25,6 +25,9 @@ export default class Books extends Component {
 
     render() {
         const { data, search, categoriesData } = this.state
+        const userData = localStorage.getItem('userData')
+            ? JSON.parse(localStorage.getItem('userData'))
+            : null
         let filteredData = []
         if (data) {
             filteredData = data.filter((book) => {
@@ -74,8 +77,14 @@ export default class Books extends Component {
                                             Stock : {book.stock}
                                         </CardSubtitle><br />
                                         <span>
-                                            <Link to={`/detail/${book._id}`} ><FontAwesomeIcon icon={faInfoCircle} /> Detail</Link> | 
-                                            <Link to="" className="action-card"><FontAwesomeIcon icon={faCartPlus} /> Add</Link>
+                                            <Link to={`/detail/${book._id}`} ><FontAwesomeIcon icon={faInfoCircle} /> Detail</Link>  
+                                            {!userData ? (
+                                                <>
+
+                                                </>
+                                            ) : (
+                                                <Link to="" className="action-card"><FontAwesomeIcon icon={faCartPlus} /> Add</Link>
+                                            )}
                                         </span>
                                     </CardBody>
                                 </Card>
